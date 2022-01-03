@@ -27,6 +27,7 @@ public:
 
     class BasicException : std::exception
     {
+    protected:
         std::string m_what;
     public:
         BasicException(const std::string & what): m_what(what) {}
