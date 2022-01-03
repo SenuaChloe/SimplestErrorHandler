@@ -1,9 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <ostream>
-#include <exception>
-#include <utility>
+#include <sstream>
 
 
 class ErrorHandler
