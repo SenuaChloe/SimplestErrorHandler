@@ -6,6 +6,8 @@
 
 class ErrorHandler
 {
+    ErrorHandler(); // Private constructor -- this is a full-static class
+    
     template<typename TExceptionType, typename THead>
     static void raise_error_recursion(std::ostringstream & error_string_stream, const THead & arg_head)
     {
