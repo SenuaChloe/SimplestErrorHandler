@@ -27,7 +27,7 @@ class ErrorHandler
 
 public:
 
-    class BasicException : std::exception
+    class BasicException : public std::exception
     {
     protected:
         std::string m_what;
