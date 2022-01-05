@@ -37,18 +37,17 @@ public:
         virtual const char * what() const noexcept override { return m_what.c_str(); };
     };
 
-    template<typename TExceptionType = BasicException>
-    static void raise_error()
-    {
-        std::ostringstream error_string_stream;
-        raise_error_recursion<TExceptionType>(error_string_stream, "<Unknown error>");
-    }
-
     template<typename TExceptionType = BasicException, typename ...TArgs>
     static void raise_error(const TArgs & ...args)
     {
         std::ostringstream error_string_stream;
         raise_error_recursion<TExceptionType>(error_string_stream, args...);
+    }
+
+    template<typename TExceptionType = BasicException>
+    static void raise_error()
+    {
+        raise_error<TExceptionType>("<Unknown error>");
     }
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
