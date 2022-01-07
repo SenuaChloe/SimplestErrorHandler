@@ -44,12 +44,6 @@ public:
         raise_error_recursion<TExceptionType>(error_string_stream, args...);
     }
 
-    template<typename TExceptionType = BasicException>
-    static void raise_error()
-    {
-        raise_error<TExceptionType>("<Unknown error>");
-    }
-
     template<typename TExceptionType = BasicException, typename ...TArgs>
     static void assert(bool predicate, const TArgs & ...args)
     {
