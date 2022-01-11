@@ -3,6 +3,12 @@
 #include <iostream>
 #include <sstream>
 
+template<typename TExceptionType, typename ...TArgs>
+concept ErrorHandlerTemplatedTypesConstraints = requires(std::string s, std::ostringstream oss, TArgs... args)
+{
+    TExceptionType(s); // TExceptionType must be constructible using a std::string
+    (oss << ... << args); // All args must be streamable
+};
 
 class ErrorHandler
 {
@@ -38,7 +44,7 @@ public:
     };
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
-    requires requires(std::string s) { TExceptionType(s); } // TExceptionType must be constructible using a std:string
+    requires ErrorHandlerTemplatedTypesConstraints<TExceptionType, TArgs...>
     static void raise_error(const TArgs & ...args)
     {
         std::ostringstream error_string_stream;
@@ -46,7 +52,7 @@ public:
     }
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
-    requires requires(std::string s) { TExceptionType(s); } // TExceptionType must be constructible using a std:string
+    requires ErrorHandlerTemplatedTypesConstraints<TExceptionType, TArgs...>
     static void assert(bool predicate, const TArgs & ...args)
     {
         if (!predicate)
