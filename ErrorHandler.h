@@ -38,6 +38,7 @@ public:
     };
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
+    requires requires(std::string s) { TExceptionType(s); } // TExceptionType must be constructible using a std:string
     static void raise_error(const TArgs & ...args)
     {
         std::ostringstream error_string_stream;
@@ -45,6 +46,7 @@ public:
     }
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
+    requires requires(std::string s) { TExceptionType(s); } // TExceptionType must be constructible using a std:string
     static void assert(bool predicate, const TArgs & ...args)
     {
         if (!predicate)
