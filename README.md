@@ -9,18 +9,13 @@ This template has a default value, which is a home-made exception called ErrorHa
 
 Here are the three functions that are part of the public interface :
 
-    template<typename TExceptionType = BasicException>
-    static void raise_error()
+    template<typename TExceptionType = BasicException, typename ...TArgs>
+    static void raise_error(const TArgs & ...args);
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
-    static void raise_error(const TArgs & ...args)
-    
-    template<typename TExceptionType = BasicException, typename ...TArgs>
-    static void assert(bool predicate, const TArgs & ...args)
+    static void assert(bool predicate, const TArgs & ...args);
 
-The `raise_error()` function generates a generic error message then throws a TExceptionType constructed with this generated message. Try not to use this one since it's not very verbose.
-
-The `raise_error(const TArgs & ...args)` function concatenates every given arguments using the `<<` operator and uses that as the error message. A TExceptionType is constructed using this message then thrown. This is most usefull function.
+The `raise_error(const TArgs & ...args)` function concatenates every given arguments using the `<<` operator and uses that as the error message. A `TExceptionType` is constructed using this message then thrown. This is most usefull function.
 
 The `assert(bool predicate, const TArgs & ...args)` checks if the predicate is true or false. If it is false, then it calls `raise_error` with the remaining arguments. Else it does nothing. You can use this to make one-liners instead of `if (/*...*/) { raise_error(/*...*/); }`. Beware of the syntax: `assert` does NOTHING is the predicate is TRUE.
 
