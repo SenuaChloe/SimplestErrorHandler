@@ -40,7 +40,7 @@ public:
     public:
         BasicException(const std::string & what): m_what(what) {}
         BasicException(std::string && what): m_what(std::forward<std::string>(what)) {}
-        virtual const char * what() const noexcept override { return m_what.c_str(); };
+        const char * what() const noexcept override { return m_what.c_str(); };
     };
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
