@@ -5,7 +5,7 @@ This is a full-static class (that uses private static members as auxiliary funct
 # Public functions
 Every function is templated on (at least) a type that must be constructible using a `std::string`.
 This is supposed to be an exception class. It is always thrown at the end with the generated message.
-This template has a default value, which is a home-made exception called ErrorHandler::BasicException (see bellow).
+This template has a default value, which is a home-made exception called `ErrorHandler::BasicException` (see bellow).
 
 Here are the three functions that are part of the public interface :
 
