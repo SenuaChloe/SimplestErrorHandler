@@ -6,7 +6,7 @@
 namespace ErrorHandler
 {   
     template<typename TExceptionType, typename ...TArgs>
-    concept ErrorHandlerTemplatedTypesConstraints = requires(std::string s, std::ostringstream oss, TArgs... args)
+    concept TemplatedTypesConstraints = requires(std::string s, std::ostringstream oss, TArgs... args)
     {
         TExceptionType(s); // TExceptionType must be constructible using a std::string
         (oss << ... << args); // All args must be streamable
@@ -23,7 +23,7 @@ namespace ErrorHandler
     };
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
-    requires ErrorHandlerTemplatedTypesConstraints<TExceptionType, TArgs...>
+    requires TemplatedTypesConstraints<TExceptionType, TArgs...>
     void raise_error(const TArgs & ...args)
     {
         std::ostringstream oss;
@@ -34,7 +34,7 @@ namespace ErrorHandler
     }
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
-    requires ErrorHandlerTemplatedTypesConstraints<TExceptionType, TArgs...>
+    requires TemplatedTypesConstraints<TExceptionType, TArgs...>
     void assert(bool predicate, const TArgs & ...args)
     {
         if (!predicate)
