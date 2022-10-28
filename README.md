@@ -25,3 +25,7 @@ In every case, the error message that is thrown with the exception is also print
 `BasicException` is a very generic and simple class that is meant to be used as a default exception class. It inherits from `std::exception` and can be constructed directly using a `std::string`.
 
 You can either use `BasicException` as it is, implement a children exception class that inherits from `BasicException` or use your own home-made exception classes.
+
+#License
+This project is under the Creative Commons Zero v1.0 Universal license.
+Usage is allowed for commercial use, modification, distribution and private use without restrictions.
