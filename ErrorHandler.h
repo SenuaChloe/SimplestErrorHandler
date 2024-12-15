@@ -4,7 +4,7 @@
 #include <sstream>
 
 namespace ErrorHandler
-{   
+{
     template<typename TExceptionType, typename ...TArgs>
     concept TemplatedTypesConstraints = requires(std::string s, std::ostringstream oss, TArgs... args)
     {
@@ -35,7 +35,7 @@ namespace ErrorHandler
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
     requires TemplatedTypesConstraints<TExceptionType, TArgs...>
-    void assert(bool predicate, const TArgs & ...args)
+    void assert_p(bool predicate, const TArgs & ...args)
     {
         if (!predicate)
             raise_error<TExceptionType>(args...);
