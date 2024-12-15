@@ -13,11 +13,11 @@ Here are the two functions that are part of the public interface :
     static void raise_error(const TArgs & ...args);
 
     template<typename TExceptionType = BasicException, typename ...TArgs>
-    static void assert(bool predicate, const TArgs & ...args);
+    static void assert_p(bool predicate, const TArgs & ...args);
 
 The `raise_error(const TArgs & ...args)` function concatenates every given arguments using the `<<` operator and uses that as the error message. A `TExceptionType` is constructed using this message then thrown. This is most usefull function.
 
-The `assert(bool predicate, const TArgs & ...args)` checks if the predicate is true or false. If it is false, then it calls `raise_error` with the remaining arguments. Else it does nothing. You can use this to make one-liners instead of `if (/*...*/) { raise_error(/*...*/); }`. Beware of the syntax: `assert` does NOTHING is the predicate is TRUE.
+The `assert_p(bool predicate, const TArgs & ...args)` checks if the predicate is true or false. If it is false, then it calls `raise_error` with the remaining arguments. Else it does nothing. You can use this to make one-liners instead of `if (/*...*/) { raise_error(/*...*/); }`. Beware of the syntax: `assert_p` does NOTHING is the predicate is TRUE.
 
 In every case, the error message that is thrown with the exception is also printed into `cerr`.
 
